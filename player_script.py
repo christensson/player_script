@@ -93,10 +93,10 @@ def main():
     video_streams = VideoStreams(args, log)
     video_streams.get_video_streams(args.source_url)
     print(video_streams.format_streams(show_urls=args.list_streams_only))
+    stream_url = video_streams.get_stream_url(args.stream_id)
+    print('Requested stream %d with URL %s' %
+          (args.stream_id, stream_url))
     if not args.list_streams_only:
-        stream_url = video_streams.get_stream_url(args.stream_id)
-        print('Requested stream %d with URL %s' %
-              (args.stream_id, stream_url))
         print('Starting player %s' % (args.player_cmd))
         cmd = [args.player_cmd, stream_url]
         log.debug('Player cmd=%s' % (str(cmd)))
